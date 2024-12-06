@@ -1,84 +1,111 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Théo SCHRIVE</title>
+    <title>Mon Portfolio</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             margin: 0;
-            background: linear-gradient(to right, #ffe4e1, #ffb6c1);
+            padding: 0;
+            background-color: #f4f4f9;
             color: #333;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 10px;
             text-align: center;
         }
-        .counter {
-            margin: 20px;
-            padding: 20px;
+        nav {
+            margin: 20px 0;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .photo-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .equipment-list {
+            list-style: none;
+            padding: 0;
+        }
+        .equipment-list li {
             background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .counter h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .counter p {
-            font-size: 36px;
-            margin: 0;
-            color: #ff1493;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
-<div class="counter">
-    <h1>Temps écoulé depuis le 29 novembre 2024 :</h1>
-    <p id="increment-counter">0 jours, 0 heures, 0 minutes, 0 secondes</p>
+<header>
+    <h1>Mon Portfolio Photo</h1>
+</header>
+<nav>
+    <a href="#photos">Mes Photos</a>
+    <a href="#equipment">Mon Matériel</a>
+    <a href="#domains">Mes Domaines</a>
+</nav>
+<div class="container">
+    <section id="photos animaux">
+        <h2>Photo Animalières</h2>
+        <div class="photo-grid">
+            <img src="home/images/tototo.png" alt="Photo 1">
+            <img src="photo2.jpg" alt="Photo 2">
+            <img src="photo3.jpg" alt="Photo 3">
+            <!-- Ajoutez vos images ici -->
+        </div>
+    </section>
+    <section id="photos route">
+        <h2>Photos Automobiles</h2>
+        <div class="photo-grid">
+            <img src="tototo.png" alt="Photo 1">
+            <img src="photo2.jpg" alt="Photo 2">
+            <img src="photo3.jpg" alt="Photo 3">
+            <!-- Ajoutez vos images ici -->
+        </div>
+    </section>
+    <section id="equipment">
+        <h2>Mon Matériel</h2>
+        <ul class="equipment-list">
+            <li>Appareil photo: Nikon D3200</li>
+            <li>Objectif: Nikon 18-55 f5.6</li>
+            <!-- Ajoutez votre matériel ici -->
+        </ul>
+    </section>
+    <section id="domains">
+        <h2>Mes Domaines Préférés</h2>
+        <p>Je suis passionné par :</p>
+        <ul>
+            <li>Photographie de paysage</li>
+            <li>Portraits</li>
+            <li>Photographie de rue</li>
+            <li>Astrophotographie</li>
+            <!-- Ajoutez vos domaines préférés ici -->
+        </ul>
+    </section>
 </div>
-<div class="counter">
-    <h1>Temps restant jusqu'au 13 décembre 2024 :</h1>
-    <p id="decrement-counter">0 jours, 0 heures, 0 minutes, 0 secondes</p>
-</div>
-
-<script>
-    // Dates de référence
-    const startDate = new Date("2024-11-29T00:00:00");
-    const endDate = new Date("2024-12-13T00:00:00");
-
-    // Fonction pour calculer le temps restant ou écoulé
-    function calculateTimeDifference(fromDate, toDate) {
-        const totalSeconds = Math.floor((toDate - fromDate) / 1000);
-        const days = Math.floor(totalSeconds / (60 * 60 * 24));
-        const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
-        const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
-        const seconds = totalSeconds % 60;
-
-        return { days, hours, minutes, seconds };
-    }
-
-    // Fonction pour mettre à jour les compteurs
-    function updateCounters() {
-        const now = new Date();
-
-        // Compteur incrémenté
-        const timeSinceStart = calculateTimeDifference(startDate, now);
-        document.getElementById("increment-counter").textContent =
-            `${timeSinceStart.days} jours, ${timeSinceStart.hours} heures, ${timeSinceStart.minutes} minutes, ${timeSinceStart.seconds} secondes`;
-
-        // Compteur décrémenté
-        const timeUntilEnd = calculateTimeDifference(now, endDate);
-        document.getElementById("decrement-counter").textContent =
-            `${timeUntilEnd.days} jours, ${timeUntilEnd.hours} heures, ${timeUntilEnd.minutes} minutes, ${timeUntilEnd.seconds} secondes`;
-    }
-
-    // Met à jour les compteurs toutes les secondes
-    setInterval(updateCounters, 1000);
-    updateCounters();
-</script>
 </body>
 </html>

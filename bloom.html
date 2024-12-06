@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Théo SCHRIVE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #ffe4e1, #ffb6c1);
+            color: #333;
+            text-align: center;
+        }
+        .counter {
+            margin: 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .counter h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .counter p {
+            font-size: 36px;
+            margin: 0;
+            color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+<div class="counter">
+    <h1>Temps écoulé depuis le 29 novembre 2024 :</h1>
+    <p id="increment-counter">0 jours, 0 heures, 0 minutes, 0 secondes</p>
+</div>
+<div class="counter">
+    <h1>Temps restant jusqu'au 13 décembre 2024 :</h1>
+    <p id="decrement-counter">0 jours, 0 heures, 0 minutes, 0 secondes</p>
+</div>
+
+<script>
+    // Dates de référence
+    const startDate = new Date("2024-11-29T00:00:00");
+    const endDate = new Date("2024-12-13T00:00:00");
+
+    // Fonction pour calculer le temps restant ou écoulé
+    function calculateTimeDifference(fromDate, toDate) {
+        const totalSeconds = Math.floor((toDate - fromDate) / 1000);
+        const days = Math.floor(totalSeconds / (60 * 60 * 24));
+        const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+        const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+        const seconds = totalSeconds % 60;
+
+        return { days, hours, minutes, seconds };
+    }
+
+    // Fonction pour mettre à jour les compteurs
+    function updateCounters() {
+        const now = new Date();
+
+        // Compteur incrémenté
+        const timeSinceStart = calculateTimeDifference(startDate, now);
+        document.getElementById("increment-counter").textContent =
+            `${timeSinceStart.days} jours, ${timeSinceStart.hours} heures, ${timeSinceStart.minutes} minutes, ${timeSinceStart.seconds} secondes`;
+
+        // Compteur décrémenté
+        const timeUntilEnd = calculateTimeDifference(now, endDate);
+        document.getElementById("decrement-counter").textContent =
+            `${timeUntilEnd.days} jours, ${timeUntilEnd.hours} heures, ${timeUntilEnd.minutes} minutes, ${timeUntilEnd.seconds} secondes`;
+    }
+
+    // Met à jour les compteurs toutes les secondes
+    setInterval(updateCounters, 1000);
+    updateCounters();
+</script>
+</body>
+</html>
+
+
+
+
