@@ -1,8 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
+// Remplacez par le nom de votre dépôt GitHub
+const repoName = "mysite";
+
 export default defineConfig({
-  base: "./",
+  base: `/${repoName}/`, // Base URL pour GitHub Pages
   plugins: [react()],
 });
